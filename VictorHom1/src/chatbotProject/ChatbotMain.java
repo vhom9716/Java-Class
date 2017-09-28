@@ -1,28 +1,20 @@
-package stringFunctions;
-
-/**
- *Note: I wrote this class without a compiler, quickly. There are probably errors. I apologize. When I get Internet access with my own computer, I will revise.
- */
+package chatbotProject;
 
 import java.util.Scanner;
 
-public class Utility{
+public class ChatbotMain {
 
+	public static Chatbot chatbot = new Chatbot();
+	
+	public static void main(String[] args) {
+		chatbot.startTalking();
+	}
+	
+	//copied from Utility
+	
 	private static Scanner inputSource = new Scanner(System.in);
 
 
-	public static void main(String[] args){
-		//this main method is designed to help you test your keywordIsIsolated method and noNegations method
-		if(keywordIsIsolated(4,"good","i'm good") && keywordIsIsolated(0,"good","good. how are you?") && !keywordIsIsolated(4,"good","goodbye. i hope you feel good") && keywordIsIsolated(25,"good","goodbye. i hope you feel good")){
-			print("You passed all the keywordIsIsolated tests.");
-		}
-		if(!noNegations("I am not great, but I am okay", 9) && noNegations("I am not great, but I am okay", 25) && noNegations("okay", 0)){
-			print("You passed all the noNegations tests.");
-		}
-
-	}
-
-	
 	//This method returns the index of the keyword in the searchString (after start position) where keyword is isolated and has no negations. It returns -1 if keyword is not found.
 	
 	public static int findKeyword(String searchString, String keyword, int startPsn) {
@@ -141,4 +133,3 @@ public class Utility{
 	}
 
 }
-
