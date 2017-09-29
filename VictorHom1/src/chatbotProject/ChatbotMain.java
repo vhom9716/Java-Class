@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class ChatbotMain {
 
+	//makes chatbot independent of instances. Represents actual program, so to access the current state of the program, 
+	//need a handle to access the program and get information. 
+	//By making it static, it can be accessed anywhere in the program
 	public static Chatbot chatbot = new Chatbot();
 	
 	public static void main(String[] args) {
@@ -79,7 +82,7 @@ public class ChatbotMain {
 
 	public static void multiLinePrint(String s){
 		String printString = "";
-		int cutoff = 25;
+		int cutoff = 55;
 		//this while loop last as long as there are words left in the original String
 		while(s.length() > 0){
 
