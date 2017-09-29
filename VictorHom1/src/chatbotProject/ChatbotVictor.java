@@ -8,7 +8,7 @@ public class ChatbotVictor implements Topic {
 	private boolean chatting;
 	
 	public ChatbotVictor(){
-		String[] temp = {"food", "entertainment", "internet", "wideo games"};
+		String[] temp = {"food", "entertainment", "internet", "video games"};
 		keywords= temp;
 		goodbyeWord = "bye";
 		secretWord = "pug";
