@@ -65,7 +65,7 @@ public class Utility{
 	public static boolean noNegations(String s, int psn){
 		String n = "not";
 		try {
-			if(s.substring(psn - 4, psn - 1).equals(n)) {
+			if(s.substring(psn - 4, psn -1).equals(n)) {
 				return false;
 			}
 		}catch(StringIndexOutOfBoundsException e) {

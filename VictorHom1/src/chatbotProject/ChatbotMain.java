@@ -20,7 +20,7 @@ public class ChatbotMain {
 
 	//This method returns the index of the keyword in the searchString (after start position) where keyword is isolated and has no negations. It returns -1 if keyword is not found.
 	
-	public static int findKeyword(String searchString, String keyword, int startPsn) {
+	public static int findKeyWord(String searchString, String keyword, int startPsn) {
 		
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();
@@ -47,7 +47,7 @@ public class ChatbotMain {
 				return true;
 			}
 		}catch(StringIndexOutOfBoundsException e) {
-			if(pos == 0 && a.compareTo(s.substring(pos + keyword.length(), pos + keyword.length() + 1)) > 0) {
+			if(pos == 0 && a.compareTo(s.substring(pos + keyword.length(), pos + keyword.length())) > 0) {
 				return true;
 			}
 			if(s.length() == pos + keyword.length() && a.compareTo(s.substring(pos - 1, pos)) > 0) {
@@ -55,7 +55,112 @@ public class ChatbotMain {
 			}
 		}
 		return false;
+		
+		
+
 	}
+	
+	/**
+	public static int findKeyword(String searchString, 
+			String keyword, 
+			int startPsn) {
+		//delete white space
+		searchString = searchString.trim();
+		//make lowercase
+		searchString = searchString.toLowerCase();
+		keyword = keyword.toLowerCase();
+		System.out.println("The phrase is "+searchString);
+		System.out.println("The keyword is "+keyword);
+		//find first position of key word
+		int psn = searchString.indexOf(keyword);
+		System.out.println("The keyword was found at "+psn);
+
+		//keep searching until context keyword found
+		while(psn >= 0){
+			//Assume preceeded and followed by space
+			String before = " ";
+			String after = " ";
+			//check character in front, in it exists
+			if(psn >0){
+				before = 
+						searchString.substring(psn-1, psn);
+				System.out.println("The character before is "
+						+before);
+			}
+			//check if there is a character after the 
+			//keyword
+			if(psn+ keyword.length() < searchString.length()){
+				after = searchString.substring(psn + 
+						keyword.length(),
+						psn + keyword.length()+1);
+				System.out.println("The character after is "
+						+after);
+			}
+			if(before.compareTo("a") < 0 &&
+					after.compareTo("a") < 0  && 
+					noNegations(searchString, psn)){
+				System.out.println("Found "+keyword+" at "
+						+psn);
+				return psn;
+			}else{
+				//psn+1 is one space after our current
+				//psn, so this finds the NEXT word.
+				psn = searchString.indexOf(keyword,psn+1);
+				System.out.println("Did not find "+keyword
+						+", checking position "
+						+psn);
+			}
+		}
+
+		return -1;
+	}
+
+*/
+	/**
+	 * This is a HELPER METHOD. A helper method is a method
+	 * designed for "helping" a larger method. Because of
+	 * this, helper methods are generally private because
+	 * they are only used by the methods they are helping
+	 * ALSO, when you do your project, I expect to see 
+	 * helper methods because they also make code more
+	 * READABLE
+	 * @param searchString (always lowercase)
+	 * @param psn
+	 * @return "true" if there is no negation words
+	 * in front of psn
+	/** 
+	private static boolean noNegations(String searchString,
+			int psn) {
+		//check to see if the word "no " is in front
+		//of psn
+		//check to see if there are 3 spaces in front
+		//then check to see if "no " is there
+		if(psn - 3 >= 0 && 
+				searchString.substring(psn-3,psn)
+				.equals("no ")){
+			return false;
+		}
+		//check for "not "
+		if(psn - 4 >= 0 && 
+				searchString.substring(psn-4,psn)
+				.equals("not ")){
+			return false;
+		}
+		//check for "never "
+		if(psn - 6 >= 0 && 
+				searchString.substring(psn-6,psn)
+				.equals("never ")){
+			return false;
+		}
+		//check for "n't "
+		if(psn - 4 >= 0 && 
+				searchString.substring(psn-4,psn)
+				.equals("n't ")){
+			return false;
+		}
+		return true;
+	}
+	*/
 
 	public static boolean noNegations(String s, int psn){
 		String n = "not";
