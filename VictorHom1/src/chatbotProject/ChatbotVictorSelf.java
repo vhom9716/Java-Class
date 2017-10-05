@@ -1,9 +1,7 @@
-package chatbotProject;
+package ChatBot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import chatbotProject.ChatbotMain;
 
 public class ChatbotVictor implements Topic {
 	
@@ -24,6 +22,8 @@ public class ChatbotVictor implements Topic {
 	private String[] testWords;
 	private boolean chatting;
 	
+	private boolean isGood;
+	
 	public ChatbotVictor(){
 		String[] temp = {"social studies", "geography", "history"};
 		keywords = temp;
@@ -41,8 +41,8 @@ public class ChatbotVictor implements Topic {
 		questionWords = temp3;
 		
 		usedQuestions = "";
-		String[] tempQue = {"Who is the first president of the United States?"};
-		String[] tempAns = {"George Washington"};
+		String[] tempQue = {"Who is the first president of the United States?", "Where is France?"};
+		String[] tempAns = {"George Washington", "Europe"};
 		turnArrayToList(questions, tempQue);
 		turnArrayToList(answers, tempAns);
 	}	
@@ -56,6 +56,13 @@ public class ChatbotVictor implements Topic {
 		return false;
 	}
 	public void startChatting(String response) {
+		if(ChatbotMain.chatbot.isBenGood()) {
+			//
+			ChatbotMain.print("math bot says you're good");
+		}else {
+			ChatbotMain.print("math bot wasnt impressed");
+		}
+		
 		ChatbotMain.print("Hey! It looks like you want some help with Social Studies. Say ready when you want me to start asking questions.");
 		String ready = "ready";
 		
@@ -69,7 +76,7 @@ public class ChatbotVictor implements Topic {
 				chatting = false;
 				ChatbotMain.chatbot.startTalking();
 			}else {
-				if(response.equals(ready)) {
+				while(response.equals(ready)) {
 					startQuestioning();
 				}
 				for (int i = 0; i < testWords.length; i++) {
@@ -82,11 +89,10 @@ public class ChatbotVictor implements Topic {
 					
 						//questionEnter = true;
 						
-						//ChatbotMain.print(getTempermentStatement(false, "That is not a question. Please try again.")); //Make sure that the questions are unique and not repeated
+					ChatbotMain.print(getTempermentStatement(false, "That is not a question. Please try again.")); //Make sure that the questions are unique and not repeated
 						//temperment++;
 						
 						ChatbotMain.print(getTempermentStatement(true, "You entered a question. Now enter the answer."));
-						
 						
 						questions.add(response);
 						//temperment--;
@@ -94,8 +100,8 @@ public class ChatbotVictor implements Topic {
 					}	
 				}
 				
-
-
+			
+				startQuestioning();
 			}
 		}
 		
@@ -105,20 +111,25 @@ public class ChatbotVictor implements Topic {
 		String response = "";
 		int randNum = getUnusedQuestionIndex();
 		String newResponse = ChatbotMain.getInput(); 
+		boolean isCorrect = false;
 		
 		ChatbotMain.print(questions.get(randNum));
 		usedQuestions += randNum; 
 			
-		while(!(newResponse.indexOf(answers.get(randNum).toLowerCase()) > -1)){
-			newResponse = ChatbotMain.getInput(); 
-			if(response != newResponse) {
-				response = newResponse;
-				temperment++;
-				ChatbotMain.print("You are wrong." + getTempermentStatement(false, "Try again.\n" + questions.get(randNum)));
+		while(!isCorrect){
+			newResponse = ChatbotMain.getInput();
+			if(newResponse.indexOf(answers.get(randNum).toLowerCase()) > -1) {
+				isCorrect = true;
+			}else {
+				if(response != newResponse) {
+					response = newResponse;
+					temperment++;
+					ChatbotMain.print("You are wrong." + getTempermentStatement(false, "Try again.\n" + questions.get(randNum)));
+				}
 			}
 		}
 		
-		ChatbotMain.print(getTempermentStatement(true, "You are correct. Say ready when you want your next question or request questions you want to be quized on."));
+		ChatbotMain.print(getTempermentStatement(true, "You are correct. Say ready when you want another question."));
 		temperment--;
 	}
 
@@ -144,17 +155,15 @@ public class ChatbotVictor implements Topic {
 	
 	//Input True gives verifications. Input False gives negations.
 	public String getTempermentStatement(boolean positive, String s) {
-		
-
 		if(positive) {
 			
-			if(temperment < 7) {
-				return verifications[temperment];
+			if(temperment > 7) {
+				return verifications[verifications.length - 1] + s;
 			}
 			return verifications[temperment] + s;
 		}
-		if(temperment < 7) {
-			return negations[temperment];
+		if(temperment > 7) {
+			return negations[negations.length - 1] + s;
 		}
 		return negations[temperment] + s;
 	}
@@ -165,6 +174,10 @@ public class ChatbotVictor implements Topic {
 			String n = a[i];
 			l.add(n);
 		}
+	}
+	
+	public boolean isGood() {
+		return isGood;
 	}
 }
 
