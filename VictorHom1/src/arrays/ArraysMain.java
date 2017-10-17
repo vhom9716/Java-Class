@@ -8,15 +8,25 @@ public class ArraysMain {
 	private int[] intRay;
 	
 	public ArraysMain() {
-		intRay = new int[100];
+		int[] consectTest = {7,8,3,8,1,2,3,4,5,6,7,8,9};
+		//intRay = new int[10];
 		//populate(intRay);
 		//checkOccurences(intRay, 3, 18);
-		populate1ToN(intRay);
-		shuffle(intRay);
-
+		//populate1ToN(intRay);
+		//shuffle(intRay);
+		//reverseOrder(intRay);
+		//frontToBack(intRay);
+		//cycleThrough(intRay, 4);
 		//Arrays is a utility class included in Java for formating
-		System.out.println(Arrays.toString(intRay));
-
+		//System.out.println(Arrays.toString(intRay));
+		
+		//int[] randomRolls = new int[1000];
+		//populate(randomRolls);
+		int result[] = longestConsecSeqAndPos(consectTest);
+		//int result[] = longestConsecSeqAndPos(randomRolls);
+		System.out.print("The longest seq was " + result[0] + " at position " + (result[1] + 1) + " starting with a roll of " + consectTest[result[1]]);
+		//System.out.print("The longest consequtive integer chain is " + longestConsecutiveSequence(consectTest));
+		
 	}
 	
 	private void shuffle(int[] intRay) {
@@ -48,7 +58,7 @@ public class ArraysMain {
 
 	private void populate(int[] intRay) {
 		for(int i = 0; i < intRay.length; i++) {
-			intRay[i] = diceRoll(3);
+			intRay[i] = diceRoll(2);
 		}
 		//This does not work
 		/**
@@ -69,6 +79,95 @@ public class ArraysMain {
 			result = (int) (result + 1 + Math.random() * 6);
 		}
 		return result;
+	}
+	
+	public int[] reverseOrder(int[] arr) {
+		int[] reversed = new int[arr.length];
+		for(int i = 0; i < arr.length; i++) {
+			reversed[i] = arr[arr.length - i - 1];
+		}
+		return reversed;
+	}
+	
+	public int countLessThan(int[] arr, int n) {
+		int count = 0;
+		for(int value:arr) {
+			if(value < n)
+				count++;
+		}
+		return count;
+	}
+	
+	//removes element at index zero, push every other element up by one
+	//put element at index zero at the end of the array
+	public void frontToBack(int[] arr) {
+		for(int i = 0; i < arr.length - 1; i++) {
+			swap(arr, i, i+1);
+		}
+	}
+	
+	//moves front to the back repeatedly, exactly n times
+	public void cycleThrough(int[] arr, int n) {
+		for(int i = 0; i < n; i++) {
+			frontToBack(arr);
+		}
+	}
+	
+	public int[] longestConsecSeqAndPos(int[] arr){
+		int[] data = new int[2];
+		data[0] = longestConsecutiveSequence(arr);
+		data[1] = findIndexOfLongestConseqInt(arr);
+		return data;
+	}
+	
+	//returns length of the longest sequence of consecutive integers
+	// ex: lCS({1,2,3,7,8,9,10}) returns 4 since 7,8,9,10 is the longest sequence
+	public int longestConsecutiveSequence(int[] arr) {
+		int count = 1;
+		int longest = 0;
+		for(int i = 0; i < arr.length - 1; i++) {
+			if(checkSequential(arr[i], arr[i + 1])) {
+				count++;
+			}else {
+				if(count > longest) {
+					longest = count;
+					count = 1;
+				}
+			}
+		}
+		if(count > longest) {
+			longest = count;
+		}
+		return longest;
+	}
+	
+	public int findIndexOfLongestConseqInt(int[] arr) {
+		int index = 0;
+		int longest = 0;
+		int count = 0;
+		for(int i = 0; i < arr.length - 1; i++) {
+			if(checkSequential(arr[i], arr[i + 1])) {
+				count++;
+			}else {
+				if(count > longest) {
+					longest = count;
+					count = 1;
+					index = i - count;
+				}
+			}
+		}
+		if(count > longest) {
+			longest = count;
+			index = arr.length - count;
+		}
+		return index;
+	}
+	
+	public boolean checkSequential(int x, int y) {
+		if(x+1 == y) {
+			return true;
+		}
+		return false;
 	}
 	
 	public void notes() {
