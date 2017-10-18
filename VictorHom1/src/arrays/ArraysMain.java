@@ -8,7 +8,7 @@ public class ArraysMain {
 	private int[] intRay;
 	
 	public ArraysMain() {
-		int[] consectTest = {7,8,3,8,1,2,3,4,5,6,7,8,9};
+		int[] consectTest = {7,8,9,10,11,12,13,14,15,16,17,18,19,20,3,8,1,2,3,4,5,6,7,8,9};
 		//intRay = new int[10];
 		//populate(intRay);
 		//checkOccurences(intRay, 3, 18);
@@ -20,11 +20,11 @@ public class ArraysMain {
 		//Arrays is a utility class included in Java for formating
 		//System.out.println(Arrays.toString(intRay));
 		
-		//int[] randomRolls = new int[1000];
-		//populate(randomRolls);
-		int result[] = longestConsecSeqAndPos(consectTest);
-		//int result[] = longestConsecSeqAndPos(randomRolls);
-		System.out.print("The longest seq was " + result[0] + " at position " + (result[1] + 1) + " starting with a roll of " + consectTest[result[1]]);
+		int[] randomRolls = new int[1000];
+		populate(randomRolls);
+		//int result[] = longestConsecSeqAndPos(consectTest);
+		int result[] = longestConsecSeqAndPos(randomRolls);
+		System.out.print("The longest seq was " + result[0] + " at position " + (result[1] + 1) + " starting with a roll of " + randomRolls[result[1]]);
 		//System.out.print("The longest consequtive integer chain is " + longestConsecutiveSequence(consectTest));
 		
 	}
@@ -58,7 +58,7 @@ public class ArraysMain {
 
 	private void populate(int[] intRay) {
 		for(int i = 0; i < intRay.length; i++) {
-			intRay[i] = diceRoll(2);
+			intRay[i] = diceRoll(1);
 		}
 		//This does not work
 		/**
@@ -151,8 +151,8 @@ public class ArraysMain {
 			}else {
 				if(count > longest) {
 					longest = count;
-					count = 1;
 					index = i - count;
+					count = 1;
 				}
 			}
 		}
