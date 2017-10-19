@@ -3,15 +3,31 @@ package arrays;
 public class ObjectArrays {
 
 	public ObjectArrays() {
-		Object[] people = new Object[20];
+		Person[] people = new Person[20];
 		populate(people);
-		people[0] = new Thing("coffee maker");
-		for(Object p: people) {
-			System.out.println(p);
+		testShuffling();		
+		
+		/**
+		for(Person p: people) {
+			p.mingle(people);
+			p.printFriends();
+			System.out.println("");
 		}
+	
+		for(Person p: selectGroup(people, 6)) {
+			System.out.println(p);
+		} **/
 	}
 
-	private void populate(Object[] people) {
+	public void testShuffling() {
+		Person[] people = new Person[20];
+		populate(people);
+		double diff = countDifferences(selectGroup(people, people.length), people);
+		double avg = diff/people.length;
+		System.out.println(avg);
+	}
+	
+	private void populate(Person[] people) {
 		for(int i = 0; i < people.length; i++) {
 			String firstName = randomNameFrom(Person.FIRST_START, Person.FIRST_MIDDLE, Person.FIRST_END);
 			String lastName = randomNameFrom(Person.LAST_START, Person.LAST_MIDDLE, Person.LAST_END);
@@ -41,6 +57,39 @@ public class ObjectArrays {
 		return a[(int) (Math.random() * a.length)];
 	}
 	
+	public Person[] selectGroup(Person[] parray, int length) {
+		Person[] subGroup = new Person[length];
+		for(int i = 0; i < length; i++) {
+			Person nextPerson = selectAPerson(parray);
+			while(isAlreadyIn(nextPerson, subGroup)) {
+				nextPerson = selectAPerson(parray);
+			}
+			subGroup[i] = nextPerson;
+		}
+		return subGroup;
+	}
 
-
+	public double countDifferences(Person[] arr1, Person[] arr2) {
+		double diff = 0;
+		for(int i = 0; i < arr1.length; i++) {
+			if(arr1[i] != arr2[i]) {
+				diff++;
+			}
+		}
+		return diff;
+	}
+	
+	public static boolean isAlreadyIn(Person p, Person[] parr) {
+		for(int i = 0;  i < parr.length; i++) {
+			if(parr[i] == p) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Person selectAPerson(Person[] group) {
+		int sel = (int) (Math.random() * group.length);
+		return group[sel];
+	}
 }
