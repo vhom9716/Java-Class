@@ -7,7 +7,7 @@ public class ObjectArrays {
 		populate(people);
 		testShuffling();		
 		
-		/**
+		
 		for(Person p: people) {
 			p.mingle(people);
 			p.printFriends();
@@ -16,7 +16,7 @@ public class ObjectArrays {
 	
 		for(Person p: selectGroup(people, 6)) {
 			System.out.println(p);
-		} **/
+		} 
 	}
 
 	public void testShuffling() {
