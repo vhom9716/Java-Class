@@ -2,7 +2,9 @@ package arrays2d;
 
 public class Main {
 
-	public void changeNeighbors(int[] arr, int x) {
+	//this is another major topic in AP CSA 
+	//avoiding an ArrayIndexOutOfBoundException
+	public static void changeNeighbors(int[] arr, int x) {
 		if(arr.length > x) {
 			arr[x]++;
 			if(arr.length > x + 1) {
