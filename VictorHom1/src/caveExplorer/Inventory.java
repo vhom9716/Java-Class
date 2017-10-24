@@ -6,4 +6,9 @@ public class Inventory {
 		
 	}
 
+	public void updateMap() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
