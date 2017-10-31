@@ -20,33 +20,31 @@ public class Inventory {
 				String text = "";
 				for(CaveRoom cr : row) {
 					//if door is open, leave open
-					if(cr.getDoor(CaveRoom.WEST) ! = null && cr.getDoor(CaveRoom.WEST).isOPen()) {
+					if(cr.getDoor(CaveRoom.WEST) != null && cr.getDoor(CaveRoom.WEST).isOpen()) {
 						text += " ";
 					}else {
 						text += "|";
 					}
 					if(i == 0) {
 						text += "   ";
-					}else {
-						if(i == 1) {
-							text = cr.getContents() + " ";
-						}else {
-							if(i == 2) {
-								if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(caveRoom.SOUTH).isOpen()) {
-									text += "   ";
-								}else text += "___";
-							}
-						}
+					}else if(i == 1) {
+						text = cr.getContents() + " ";
+					}else if(i == 2) {
+						if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()) {
+							text += "   ";
+						}else text += "___";
 					}
+					
 				}
-			}
-			text += "|";
-			map += text + "\n";
-		}
+				text += "|";
+				map += text+"\n";
+			}	
+			
+		}	
 	}
 
 	public String getDescription() {
-		return "You have nothing in your inventory.";
+		return map;
 	}
 
 }
