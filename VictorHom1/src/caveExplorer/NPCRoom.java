@@ -1,10 +1,10 @@
 package caveExplorer;
 
-public class NCPRoom extends CaveRoom {
+public class NPCRoom extends CaveRoom {
 
 	private NPC presentNPC;
 	
-	public NCPRoom(String description) {
+	public NPCRoom(String description) {
 		super(description);
 		presentNPC = null;
 	}
@@ -68,7 +68,7 @@ public class NCPRoom extends CaveRoom {
 		if(containsNPC() && presentNPC.isActive()) {
 			return super.getDescription() + "\n" + presentNPC.getInactiveDescription();	
 		}else {
-			return super.getDescription();
+			return super.getDescription() + "\n" + presentNPC.getActiveDescription();
 		}
 	}
 	

@@ -22,6 +22,7 @@ public class CaveExplorer {
 
 	private static void startExploring() {
 		while(playing) {
+			npcActions();
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());
 			print("What would you like to do?");
@@ -31,8 +32,34 @@ public class CaveExplorer {
 		
 	}
 
+	private static void npcActions() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	public static void print(String s) {
-		//NOTE later replace line with more sophisticated "multiLinePrint" from Chatbot
-		System.out.println(s);
+		for(MOC n: npc) {
+			n.act();
+			inventory.udpateMap;
+		}
+	}
+	
+	public void act() {
+		if(avtive) {
+			int[] movr = calculateMovement();
+			int newRom = currentRow + move[0];
+			int newCol = currentCol +1;
+			setPostition(newRo, new col)
+							
+		}
+	}
+
+
+	private int[] calculateMovement() {
+		int[] moves = new int[2];
+		int[][] possibleMoves = {{-1,0}, {0,-1};
+		int rand = (int)(Math.random()*4);
+		}
 	}
 }
