@@ -3,9 +3,13 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
-	
-	public Inventory() {
+	private int attack;
+	private int HP;
+
+	public Inventory(int attack) {
 		updateMap();
+		this.attack = attack;
+		HP = 100;
 	}
 
 	public void updateMap() {
@@ -50,5 +54,21 @@ public class Inventory {
 
 	public String getDescription() {
 		return map;
+	}
+	
+	public int getAttack() {
+		return attack;
+	}
+
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
+
+	public int getHP() {
+		return HP;
+	}
+
+	public void changeHP(int damage) {
+		this.HP = HP - damage;
 	}
 }
