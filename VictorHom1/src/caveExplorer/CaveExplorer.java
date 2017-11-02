@@ -9,6 +9,7 @@ public class CaveExplorer {
 	public static CaveRoom currentRoom;//changes based on how the user navigates
 	public static Inventory inventory;//where all objects found in the cave are kept
 	public static boolean playing = true;
+	static NPC [] npcs;
 	
 	
 	public static void main(String[] args) {
@@ -32,34 +33,15 @@ public class CaveExplorer {
 		
 	}
 
-	private static void npcActions() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public static void print(String s) {
-		for(MOC n: npc) {
+	public static void npcActions() {
+		for(NPC n: npcs) {
 			n.act();
-			inventory.udpateMap;
+			inventory.updateMap();
 		}
 	}
 	
-	public void act() {
-		if(avtive) {
-			int[] movr = calculateMovement();
-			int newRom = currentRow + move[0];
-			int newCol = currentCol +1;
-			setPostition(newRo, new col)
-							
-		}
-	}
-
-
-	private int[] calculateMovement() {
-		int[] moves = new int[2];
-		int[][] possibleMoves = {{-1,0}, {0,-1};
-		int rand = (int)(Math.random()*4);
-		}
+	public static void print(String s) {
+		//NOTE: later, you can replace this line with the more sophisticated "multiLinePrint" from Chatbot
+		System.out.println(s);
 	}
 }
