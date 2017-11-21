@@ -51,6 +51,7 @@ public class RoamingAnimal extends Animal {
 		}else {
 			if(getAge() > 5) {
 				System.out.println(this + " died of old age");
+				habitat.removeAnimal(this);
 			}
 			if(!hasMated()) {
 				mate();
