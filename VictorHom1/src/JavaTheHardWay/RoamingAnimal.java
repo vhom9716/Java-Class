@@ -28,7 +28,7 @@ public class RoamingAnimal extends Animal {
 		int years = 7;
 		for(int y = 0; y < years; y++) {
 			for(Animal a: h.getAnimals()) {
-				if(a != null)a.act();
+				if(a != null) a.act();
 			}
 			h.growPlants();
 			System.out.println("\n"+h);

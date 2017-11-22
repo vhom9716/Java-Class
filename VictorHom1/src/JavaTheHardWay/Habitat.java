@@ -3,11 +3,6 @@ package JavaTheHardWay;
 public class Habitat extends Environment{
 
 	private Animal[] animals;
-	
-	public Habitat(int livingCapacity) {
-		super(livingCapacity);
-		animals = new Animal[livingCapacity];
-	}
 
 	public static void main(String[] args) {
 		Habitat h = new Habitat(5);
@@ -20,6 +15,11 @@ public class Habitat extends Environment{
 		System.out.println(h);
 	}
 
+	public Habitat(int livingCapacity) {
+		super(livingCapacity);
+		animals = new Animal[livingCapacity];
+	}
+	
 	public String toString() {
 		return super.toString()+"\nHabitants:\n"+animalReport();
 	}
