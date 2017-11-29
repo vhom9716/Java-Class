@@ -44,7 +44,7 @@ public class Searching {
 		in.nextLine();
 
 		int index = binarySearch(numbers, 0, numbers.length, target);
-
+		System.out.println(index);
 		if(index!=-1){
 			System.out.println("The number "+target+" was found at index "+index+". Did the computer win?");
 		}else{
@@ -53,26 +53,46 @@ public class Searching {
 		
 	}
 	
-	private int binarySearch(int[] arr, int start, int end, int target) {
+	private int binarySearch(int[] nums, int start, int finish, int target) {
+		if(start > finish) return -1;
+
+		else
+
+		{
+
+		int mid = (start+finish)/2;
+
+		if (nums[mid]==target) return mid;
+
+		else if (nums[mid] > target)
+
+		{
+
+		return binarySearch(nums, start, mid-1, target);
+
+		}
+
+		else return binarySearch(nums, mid+1,finish, target);
+
+		}
+		/**
 		delay();
-		if(start == end) {
-			if(arr[(start+end)/2] == target) {
-				return (start+end)/2;
-			}else {
-				return -1;
-			}
+		int midpoint = (start+end)/2;
+		System.out.println(start + " " + end + " " + midpoint + " " + arr[midpoint] + " " + target);
+		if(arr[midpoint] == target) {
+			System.out.print("a");
+			return midpoint;
 		}
-		if(arr[(start+end)/2] == target) {
-			return (start+end)/2;
-		}else {
-			if(arr[(start+end)/2] <= target) {
-				binarySearch(arr, (start+end)/2, end, target);
-			}
-			if(arr[(start+end)/2] > target) {
-				binarySearch(arr, start, (start+end)/2, target);
-			}
+		if(start > end) {
+			return -1;
 		}
-		return -1;
+		if(arr[midpoint] < target) {
+			binarySearch(arr, midpoint + 1, end, target);
+		}
+		if(arr[(start+end)/2] > target) {
+			binarySearch(arr, start, midpoint -1, target);
+		}
+		return -1; **/
 	}
 	
 	/**
